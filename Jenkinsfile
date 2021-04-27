@@ -6,7 +6,7 @@ pipeline {
         steps {
           echo 'Building...'
           withMaven {
-          sh "mvn clean compile"
+          bat "mvn.cmd clean compile"
           }
         }
    }
@@ -14,7 +14,7 @@ pipeline {
      steps {
         echo 'Testing...1'
         withMaven {
-          sh "mvn test"
+          bat "mvn.cmd test"
           }
      }
    }
