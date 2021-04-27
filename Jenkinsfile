@@ -1,16 +1,25 @@
 pipeline {
    agent any
+    {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
 
    stages {
       stage('Build') {
         steps {
           echo 'Building...'
-          echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
+          withMaven {
+          sh "mvn clean compile"
+          }
         }
    }
    stage('Test') {
      steps {
         echo 'Testing...1'
+        withMaven {
+          sh "mvn test"
+          }
      }
    }
    stage('Deploy') {
