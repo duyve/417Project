@@ -1,3 +1,5 @@
+def testList = ["TestRectangleType", "TestTriangleType"]
+
 pipeline {
    agent any
 
@@ -14,7 +16,7 @@ pipeline {
      steps {
         echo 'Testing...1'
         withMaven {
-          bat "mvn.cmd test"
+          bat "mvn.cmd -Dtest=${testList.join(',')} test"
           }
      }
    }
